@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">KnotsAndCrosses</string>
+    <string name="enter_name">Enter Player Name</string>
+    <string name="enter_join_code">Enter Join code</string>
+    <string name="enter">Enter</string>
+    <string name="create_game">Create Game</string>
+    <string name="join_game">Join Game</string>
 </resources>
