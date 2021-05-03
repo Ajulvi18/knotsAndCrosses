@@ -9,12 +9,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val player = "Stuff"
         val communications = Communications()
-        communications.startGame(this)
+        communications.startGame(this, player)
         val gameList = communications.getGameLists()
         gameList.observe(this, {
             it?.let{
-                val toast = Toast.makeText(this, it.gameId, Toast.LENGTH_LONG)
+                val toast = Toast.makeText(this, it.players[0], Toast.LENGTH_LONG)
                 toast.show()
             }
         })
