@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
-import com.example.knotsandcrosses.data.game
 import com.google.android.material.textfield.TextInputEditText
 
 class MainActivity : AppCompatActivity() {
@@ -23,15 +22,6 @@ class MainActivity : AppCompatActivity() {
         enterButton.setOnClickListener{
             onEnterClick()
         }
-        val communications = Communications()
-        val gameList = communications.getGameLists()
-        gameList.observe(this, {
-            it?.let{
-                val toast = Toast.makeText(this, it.players[0], Toast.LENGTH_LONG)
-                toast.show()
-            }
-        })
-
     }
 
     private fun onEnterClick() {
