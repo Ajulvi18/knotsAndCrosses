@@ -66,8 +66,10 @@ class Communications(){
             Request.Method.POST, url,
             Response.Listener<String> { response ->
                 emptyGame = fromJson(response)
-                val emptyRow = mutableListOf<String>("0", "0", "0")
-                val emptyList = mutableListOf(emptyRow, emptyRow, emptyRow)
+                val emptyRow0 = mutableListOf<String>("0", "0", "0")
+                val emptyRow1 = mutableListOf<String>("0", "0", "0")
+                val emptyRow2 = mutableListOf<String>("0", "0", "0")
+                val emptyList = mutableListOf(emptyRow0, emptyRow1, emptyRow2)
                 emptyGame.state = emptyList
                 gameLiveData.postValue(emptyGame)
 
@@ -97,7 +99,7 @@ class Communications(){
         var body = jsonObjectRequest.body.toString()
         queue.add(jsonObjectRequest)
     }
-    fun getGameLists(): MutableLiveData<game> {
+    fun getGame(): MutableLiveData<game> {
         return gameLiveData
     }
 
@@ -110,8 +112,10 @@ class Communications(){
             Request.Method.POST, url,
             Response.Listener<String> { response ->
                 emptyGame = fromJson(response)
-                val emptyRow = mutableListOf<String>("0", "0", "0")
-                val emptyList = mutableListOf(emptyRow, emptyRow, emptyRow)
+                val emptyRow0 = mutableListOf<String>("0", "0", "0")
+                val emptyRow1 = mutableListOf<String>("0", "0", "0")
+                val emptyRow2 = mutableListOf<String>("0", "0", "0")
+                val emptyList = mutableListOf(emptyRow0, emptyRow1, emptyRow2)
                 emptyGame.state = emptyList
                 gameLiveData.postValue(emptyGame)
 
@@ -169,7 +173,7 @@ class Communications(){
         queue.add(jsonObjectRequest)
     }
 
-    public fun postGameState(context: Context, gameId: String, player: String) {
+    public fun postGameState(context: Context, gameId: String) {
 
         lateinit var currentGame: game
         val queue = Volley.newRequestQueue(context)
@@ -199,6 +203,14 @@ class Communications(){
             }
         }
         queue.add(jsonObjectRequest)
+    }
+    public fun setGameState(rowIndex:Int, squareIndex:Int, value:String, context:Context){
+        var currentState = gameLiveData.value
+        if (currentState != null) {
+            currentState.state[rowIndex][squareIndex] = value
+            gameLiveData.postValue(currentState)
+            postGameState(context, currentState.gameId)
+        }
     }
 }
 /*

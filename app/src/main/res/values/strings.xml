@@ -5,4 +5,5 @@
     <string name="enter">Enter</string>
     <string name="create_game">Create Game</string>
     <string name="join_game">Join Game</string>
+    <string name="id_display">Getting game id..</string>
 </resources>

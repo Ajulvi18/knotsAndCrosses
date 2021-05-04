@@ -6,4 +6,164 @@
     android:layout_height="match_parent"
     tools:context=".GamePlay">
 
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="356dp"
+        android:layout_height="356dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/rute11"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/empty" />
+
+                <View
+                    android:layout_width="10dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#FF909090"
+                    android:padding="2dip" />
+
+                <ImageButton
+                    android:id="@+id/rute12"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/empty" />
+
+                <View
+                    android:layout_width="10dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#FF909090"
+                    android:padding="2dip" />
+
+                <ImageButton
+                    android:id="@+id/rute13"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/empty" />
+
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dip"
+                android:layout_weight="1"
+                android:background="#FF909090"
+                android:padding="2dip" />
+            />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/rute21"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/empty" />
+
+                <View
+                    android:layout_width="10dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#FF909090"
+                    android:padding="2dip" />
+
+                <ImageButton
+                    android:id="@+id/rute22"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/empty" />
+
+                <View
+                    android:layout_width="10dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#FF909090"
+                    android:padding="2dip" />
+
+                <ImageButton
+                    android:id="@+id/rute23"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/empty" />
+
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dip"
+                android:layout_weight="1"
+                android:background="#FF909090"
+                android:padding="2dip" />
+            />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/rute31"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/empty" />
+
+                <View
+                    android:layout_width="10dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#FF909090"
+                    android:padding="2dip" />
+
+                <ImageButton
+                    android:id="@+id/rute32"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/empty" />
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#FF909090"
+                    android:padding="2dip" />
+
+                <ImageButton
+                    android:id="@+id/rute33"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/empty" />
+            </TableRow>
+        </TableLayout>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/game_id_display"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:text="@string/id_display"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.494"
+        android:textAppearance="?attr/textAppearanceHeadline3"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
