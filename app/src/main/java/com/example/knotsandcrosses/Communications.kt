@@ -112,11 +112,13 @@ class Communications(){
             Request.Method.POST, url,
             Response.Listener<String> { response ->
                 emptyGame = fromJson(response)
-                val emptyRow0 = mutableListOf<String>("0", "0", "0")
-                val emptyRow1 = mutableListOf<String>("0", "0", "0")
-                val emptyRow2 = mutableListOf<String>("0", "0", "0")
-                val emptyList = mutableListOf(emptyRow0, emptyRow1, emptyRow2)
-                emptyGame.state = emptyList
+                if (emptyGame.state == null) {
+                    val emptyRow0 = mutableListOf<String>("0", "0", "0")
+                    val emptyRow1 = mutableListOf<String>("0", "0", "0")
+                    val emptyRow2 = mutableListOf<String>("0", "0", "0")
+                    val emptyList = mutableListOf(emptyRow0, emptyRow1, emptyRow2)
+                    emptyGame.state = emptyList
+                }
                 gameLiveData.postValue(emptyGame)
 
             },

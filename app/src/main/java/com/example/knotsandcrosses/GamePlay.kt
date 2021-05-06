@@ -8,6 +8,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import com.example.knotsandcrosses.GAME_ID
+import com.example.knotsandcrosses.data.game
 
 class GamePlay : AppCompatActivity() {
     lateinit var player:String
@@ -33,6 +34,13 @@ class GamePlay : AppCompatActivity() {
         val square33: ImageButton = findViewById(R.id.rute33)
         var listOfSquares: MutableList<MutableList<ImageButton>> = mutableListOf(mutableListOf(square11, square12, square13), mutableListOf(square21, square22, square23), mutableListOf(square31, square32, square33))
         val bundle: Bundle? = intent.extras
+        for (row in listOfSquares){
+            for (square in row){
+                square.setOnClickListener{
+                    onSquareClick(listOfSquares.indexOf(row),row.indexOf(square))
+                }
+            }
+        }
         if (bundle != null) {
             joinCode = bundle.getString(GAME_ID)
             player = bundle.getString("player").toString()
@@ -50,10 +58,13 @@ class GamePlay : AppCompatActivity() {
         currentGame.observe(this, {
             it?.let{
 
-                if (playerValue == null){
-
+                var winner = checkForVictory(it)
+                if (winner != "no winner yet" && winner != "0"){
+                    val toast = Toast.makeText(this, winner + " wins", Toast.LENGTH_LONG)
+                    toast.show()
                 }
                 gameIdDisplay.text = "GameID: " + it.gameId
+
                 for (row in listOfSquares){
                     for (square in row){
                         if (playerValue == null && it.state[listOfSquares.indexOf(row)][row.indexOf(square)] == "X"){
@@ -77,13 +88,6 @@ class GamePlay : AppCompatActivity() {
                 }
             }
         })
-        for (row in listOfSquares){
-            for (square in row){
-                square.setOnClickListener{
-                    onSquareClick(listOfSquares.indexOf(row),row.indexOf(square))
-                }
-            }
-        }
     }
     private fun onSquareClick(rowIndex: Int, squareIndex: Int) {
         if (playerTurn == true) {
@@ -98,7 +102,9 @@ class GamePlay : AppCompatActivity() {
         val timeTicks = 1000L
         timer = object : CountDownTimer(timeToCountDownInMs,timeTicks) {
             override fun onFinish() {
-                getStateOfGame()
+                if(communications.gameLiveData.value?.gameId   != null){
+                    getStateOfGame()
+                }
                 if (playerTurn == false){
                     this.start()
                 }
@@ -111,6 +117,24 @@ class GamePlay : AppCompatActivity() {
 
     private fun getStateOfGame(){
         communications.getGameState(this)
+    }
+
+    private fun checkForVictory(gametocheck: game):String{
+        for(row in gametocheck.state) {
+            if (row[0] == row[1] && row[1] == row[2] && row[0] != "0") {
+                return row[0]
+            }
+        }
+        for(i in 0..2) {
+            if (gametocheck.state[0][i] == gametocheck.state[1][i] && gametocheck.state[1][i] == gametocheck.state[2][i] && gametocheck.state[0][i] != "0") {
+                var winner = gametocheck.state[0][i]
+                return gametocheck.state[0][i]
+            }
+        }
+        if (gametocheck.state[0][0] == gametocheck.state[1][1] && gametocheck.state[1][1] == gametocheck.state[2][2] || gametocheck.state[0][2] == gametocheck.state[1][1] && gametocheck.state[1][1] == gametocheck.state[2][0]){
+            return gametocheck.state[1][1]
+        }
+        return "no winner yet"
     }
 
 }
