@@ -7,6 +7,8 @@ import android.widget.Button
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
 
+const val GAME_ID = "gameId"
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var playerName: String
@@ -59,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             val intent = Intent(this, GamePlay()::class.java)
             intent.putExtra("player", playerName)
-            intent.putExtra("joinCode", joinCodeEntry.text)
+            intent.putExtra(GAME_ID, joinCodeEntry.text.toString())
             startActivity(intent)
         }
     }
