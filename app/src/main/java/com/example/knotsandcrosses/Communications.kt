@@ -145,16 +145,20 @@ class Communications(){
         queue.add(jsonObjectRequest)
     }
 
-    public fun getGameState(context: Context, gameId: String) {
+    public fun getGameState(context: Context) {
 
         lateinit var currentGame: game
         val queue = Volley.newRequestQueue(context)
-        val url = "https://generic-game-service.herokuapp.com/Game/" + gameId + "/poll"
+        val url = "https://generic-game-service.herokuapp.com/Game/" + gameLiveData.value!!.gameId + "/poll"
         val jsonObjectRequest = object : StringRequest(
             Request.Method.GET, url,
             Response.Listener<String> { response ->
+                val previousGameState = gameLiveData.value
                 currentGame = fromJson(response)
-                gameLiveData.postValue(currentGame)
+                if (currentGame != previousGameState){
+                    gameLiveData.postValue(currentGame)
+                }
+
 
             },
             Response.ErrorListener { response ->
@@ -177,7 +181,8 @@ class Communications(){
 
         lateinit var currentGame: game
         val queue = Volley.newRequestQueue(context)
-        val url = "https://generic-game-service.herokuapp.com/Game/" + gameId + "/join"
+        val url = "https://generic-game-service.herokuapp.com/Game/" + gameId + "/update"
+        val lookatjson = toJson(gameLiveData.value!!)
         val jsonObjectRequest = object : StringRequest(
             Request.Method.POST, url,
             Response.Listener<String> { response ->
