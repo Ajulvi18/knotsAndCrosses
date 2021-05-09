@@ -12,5 +12,8 @@ Selve spillingen er skilt ut til en egent aktivitet som oobserverer alle endring
 
 # Appen i bruk
 
-
-![Alt text](screenshots/playerNameEntered.png?raw=true "Title")
+<p float="left">
+  <img src="screenshots/enterPlayerName.png" width="100" />
+  <img src="screenshots/enterJoinCode.png" width="100" /> 
+  <img src="screenshots/gameInProgress1.png" width="100" />
+</p>
