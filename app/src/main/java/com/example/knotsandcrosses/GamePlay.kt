@@ -60,7 +60,14 @@ class GamePlay : AppCompatActivity() {
 
                 var winner = checkForVictory(it)
                 if (winner != "no winner yet" && winner != "0"){
-                    val toast = Toast.makeText(this, winner + " wins", Toast.LENGTH_LONG)
+                    lateinit var textToShow:String
+                    if (winner == "draw") {
+                        textToShow = winner
+                    } else {
+                        textToShow = winner + " wins"
+                    }
+
+                    val toast = Toast.makeText(this, textToShow, Toast.LENGTH_LONG)
                     toast.show()
                 }
                 gameIdDisplay.text = "GameID: " + it.gameId
@@ -133,6 +140,9 @@ class GamePlay : AppCompatActivity() {
         }
         if (gametocheck.state[0][0] == gametocheck.state[1][1] && gametocheck.state[1][1] == gametocheck.state[2][2] || gametocheck.state[0][2] == gametocheck.state[1][1] && gametocheck.state[1][1] == gametocheck.state[2][0]){
             return gametocheck.state[1][1]
+        }
+        if ((true in mutableListOf(("0" in gametocheck.state[0]),("0" in gametocheck.state[1]),("0" in gametocheck.state[2]))==false)){
+            return "draw"
         }
         return "no winner yet"
     }
