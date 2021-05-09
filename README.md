@@ -13,3 +13,4 @@ Selve spillingen er skilt ut til en egent aktivitet som oobserverer alle endring
 # Appen i bruk
 
 
+![Alt text](screenshots/playerNameEntered.png?raw=true "Title")
